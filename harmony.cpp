@@ -65,9 +65,9 @@ const Harmony::Map Harmony::map[] = {
 Harmony::Harmony(Event *event) : event(event) {
   libusb_init(&ctx);
 #ifdef NDEBUG
-  libusb_set_debug(ctx, LIBUSB_LOG_LEVEL_NONE);
+  libusb_set_option(ctx, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_NONE);
 #else
-  libusb_set_debug(ctx, LIBUSB_LOG_LEVEL_WARNING);
+  libusb_set_option(ctx, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_WARNING);
 #endif
   if (event) {
     auto pollFds = libusb_get_pollfds(ctx);

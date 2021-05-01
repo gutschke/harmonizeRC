@@ -43,7 +43,7 @@ void Event::loop() {
       }
     }
     // Wait for next event
-    struct timespec ts = { tmo / 1000, tmo*1000000L };
+    struct timespec ts = { (long)tmo / 1000L, (long)tmo*1000000L };
     int nFds = pollFds.size();
     int rc = ppoll(fds, nFds, tmo ? &ts : NULL, NULL);
     if (!rc) {
