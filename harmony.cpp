@@ -65,13 +65,13 @@ const Harmony::Map Harmony::map[] = {
 Harmony::Harmony(Event *event) : event(event) {
   libusb_init(&ctx);
 #ifdef NDEBUG
-# ifdef LIBUSB_OPTION_LOG_LEVEL
+# if defined(LIBUSB_API_VERSION) && (LIBUSB_API_VERSION >= 0x01000106)
     libusb_set_option(ctx, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_NONE);
 # else
     libusb_set_debug(ctx, LIBUSB_LOG_LEVEL_NONE);
 # endif
 #else
-# ifdef LIBUSB_OPTION_LOG_LEVEL
+# if defined(LIBUSB_API_VERSION) && (LIBUSB_API_VERSION >= 0x01000106)
     libusb_set_option(ctx, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_WARNING);
 # else
     libusb_set_debug(ctx, LIBUSB_LOG_LEVEL_WARNING);
